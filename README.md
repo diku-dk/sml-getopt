@@ -1,4 +1,4 @@
-# Command line option parsing for Standard ML
+# Command line option parsing for Standard ML [![CI](https://github.com/diku-dk/sml-getopt/workflows/CI/badge.svg)](https://github.com/diku-dk/sml-getopt/actions)
 
 This is an SML library for parsing command line options, in the style
 of `getopt`.  It is designed to make it possible to fully follow
