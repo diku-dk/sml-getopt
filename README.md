@@ -10,6 +10,9 @@ provided options.  This flexibility does make it a little cumbersome
 in some cases (see examples below), but your users will likely
 appreciate the consistency with other programs.
 
+While the library is currently supplied only with MLB files, the code
+should work in any compliant SML compiler.  CM files welcome!
+
 The implementation is based on [a Haskell library by Sven
 Panne](https://hackage.haskell.org/package/base/docs/System-Console-GetOpt.html).
 
