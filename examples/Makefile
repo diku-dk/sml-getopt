@@ -1,4 +1,4 @@
-all: refs list
+all: refs list collect
 
 %: %.mlb %.sml
 	mlkit -o $@ $<
