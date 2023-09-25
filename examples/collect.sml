@@ -33,28 +33,26 @@ val () =
     if null errors then
       let
         fun get (COLLECT s :: _) =
-          ( print ("Non-option " ^ s ^ " precedes --foo or --bar.\n")
-          ; OS.Process.exit OS.Process.failure
-          )
-          | get (SET_FOO :: opts) =
-            get_foos opts
-          | get (SET_BAR :: opts) =
-            get_bars opts
+              ( print ("Non-option " ^ s ^ " precedes --foo or --bar.\n")
+              ; OS.Process.exit OS.Process.failure
+              )
+          | get (SET_FOO :: opts) = get_foos opts
+          | get (SET_BAR :: opts) = get_bars opts
           | get [] = ([], [])
-          and get_foos [] = ([], [])
-            | get_foos (SET_FOO :: opts) = get_foos opts
-            | get_foos (SET_BAR :: opts) = get_bars opts
-            | get_foos (COLLECT s :: opts) =
+        and get_foos [] = ([], [])
+          | get_foos (SET_FOO :: opts) = get_foos opts
+          | get_foos (SET_BAR :: opts) = get_bars opts
+          | get_foos (COLLECT s :: opts) =
               let val (foos, bars) = get_foos opts
               in (s :: foos, bars)
               end
-          and get_bars [] = ([], [])
-            | get_bars (SET_FOO :: opts) = get_foos opts
+        and get_bars [] = ([], [])
+          | get_bars (SET_FOO :: opts) = get_foos opts
           | get_bars (SET_BAR :: opts) = get_bars opts
           | get_bars (COLLECT s :: opts) =
-          let val (foos, bars) = get_bars opts
-          in (foos, s :: bars)
-          end
+              let val (foos, bars) = get_bars opts
+              in (foos, s :: bars)
+              end
         val (foos, bars) = get opts
       in
         print ("Foo:" ^ concat (map (fn s => " " ^ s) foos) ^ "\n");
